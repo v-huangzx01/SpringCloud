@@ -3,23 +3,23 @@
 
 我的简书：[billJiang的简书地址](http://www.jianshu.com/u/1129e8da7a07)
 
-# eureka-demo
-eureka作为微服务注册和发现组件示例，包含`eureka-client`和`eureka-server`
-
-相关文章：
-- [Spring Cloud构建微服务架构：Eureka服务注册与发现](http://www.jianshu.com/p/1170f4593638)
-
-# zuul-demo
-使用zuul作为服务发现组件示例
-
-相关文章：
-- [Spring Cloud构建微服务架构：Consul服务注册与发现](http://www.jianshu.com/p/6ee1fe79e959)
-
 # boot-admin-demo
 开源框架spring-boot-admin的配置和使用，提供了服务注册/监控/路由跟踪的功能。
 
 相关文章：
 - [Spring Boot Admin使用及心跳检测原理](http://www.jianshu.com/p/1170f4593638)
+
+# consul-demo
+使用consul作为服务发现组件示例
+
+相关文章：
+- [Spring Cloud构建微服务架构：Consul服务注册与发现](http://www.jianshu.com/p/6ee1fe79e959)
+
+# eureka-demo
+eureka作为微服务注册和发现组件示例，包含`eureka-client`和`eureka-server`
+
+相关文章：
+- [Spring Cloud构建微服务架构：Eureka服务注册与发现](http://www.jianshu.com/p/1170f4593638)
 
 # springcloud-demo
 一个相对完整的微服务架构实例，包含如下子项目：
