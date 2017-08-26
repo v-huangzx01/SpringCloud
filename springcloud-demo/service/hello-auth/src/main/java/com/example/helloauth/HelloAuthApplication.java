@@ -1,16 +1,14 @@
-package com.example.discovery;
+package com.example.helloauth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-@EnableEurekaServer
 @EnableDiscoveryClient
-public class DiscoveryClusterApplication {
+public class HelloAuthApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DiscoveryClusterApplication.class, args);
+		SpringApplication.run(HelloAuthApplication.class, args);
 	}
 }
