@@ -54,3 +54,6 @@ eureka作为微服务注册和发现组件示例，包含`eureka-client`和`eure
 
 相关文章：
 - [微服务之间的调用（Ribbon与Feign）](http://www.jianshu.com/p/7ca91139dca5)
+- [服务注册Eureka原理及集群配置](http://www.jianshu.com/p/ee14bbee732b)
+- [Ribbon负载均衡策略与自定义配置](http://www.jianshu.com/p/768851b9e298)
+- [自定义feign配置与服务调用的安全验证](http://www.jianshu.com/p/755b15ff0249)
