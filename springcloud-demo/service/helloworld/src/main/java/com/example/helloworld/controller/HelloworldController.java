@@ -3,6 +3,7 @@ package com.example.helloworld.controller;
 import com.example.helloworld.model.HelloMessage;
 import com.example.helloworld.model.HelloworldMessage;
 import com.example.helloworld.model.WorldMessage;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,9 @@ public class HelloworldController {
         return "hello world";
     }
 
+
     @GetMapping("/message")
+    @HystrixCommand(fallbackMethod = "getMessageFallback")
     public HelloworldMessage getMessage() {
         HelloMessage hello = getMessageFromHelloService();
         WorldMessage world = getMessageFromWorldService();
@@ -45,6 +48,22 @@ public class HelloworldController {
         return helloworld;
     }
 
+    /**
+     * 断路方法
+     * @return
+     */
+    public HelloworldMessage getMessageFallback(){
+       HelloMessage helloMessage=new HelloMessage();
+       helloMessage.setName("hello");
+       helloMessage.setMessage("error occurs");
+
+       WorldMessage worldMessage=new WorldMessage();
+       worldMessage.setMessage("world error occurs");
+       HelloworldMessage helloworldMessage=new HelloworldMessage();
+       helloworldMessage.setHello(helloMessage);
+       helloworldMessage.setWord(worldMessage);
+       return helloworldMessage;
+    }
     private HelloMessage getMessageFromHelloService() {
         HelloMessage hello = restTemplate.getForObject("http://hello/message", HelloMessage.class);
         log.debug("From hello service : {}.", hello);
@@ -56,6 +75,8 @@ public class HelloworldController {
         log.debug("From world service : {}.", world);
         return world;
     }
+
+
 
 
 }

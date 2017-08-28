@@ -14,5 +14,4 @@ public interface HelloAuthService {
     @GetMapping("/{id}")
     User findById(@PathVariable("id") Long id);
 
-
 }

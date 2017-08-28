@@ -13,3 +13,6 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0
+feign:
+  hystrix:
+    enabled: true

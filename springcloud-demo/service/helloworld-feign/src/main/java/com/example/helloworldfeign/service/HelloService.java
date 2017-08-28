@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author billjiang 475572229@qq.com
  * @create 17-8-23
  */
-@FeignClient(value="hello")
+@FeignClient(value="hello",fallbackFactory = HelloServiceFallbackFactory.class)//fallback = HelloServiceFallback.class)
 public interface HelloService {
 
     @GetMapping("/message")
