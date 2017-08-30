@@ -57,3 +57,7 @@ eureka作为微服务注册和发现组件示例，包含`eureka-client`和`eure
 - [服务注册Eureka原理及集群配置](http://www.jianshu.com/p/ee14bbee732b)
 - [Ribbon负载均衡策略与自定义配置](http://www.jianshu.com/p/768851b9e298)
 - [自定义feign配置与服务调用的安全验证](http://www.jianshu.com/p/755b15ff0249)
+- [断路器hystrix原理及使用](http://www.jianshu.com/p/53e109bf5c54)
+- [Hystrix监控的配置详解](http://www.jianshu.com/p/b7b20fc09ca9)
+- [Spring Cloud Config配置详解](http://www.jianshu.com/p/e48de30aab76)
+- [使用sleuth实现微服务跟踪](http://www.jianshu.com/p/5df2e83d0ef8)
