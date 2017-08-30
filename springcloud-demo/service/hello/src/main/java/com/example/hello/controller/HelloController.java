@@ -5,8 +5,10 @@ import com.example.hello.model.HelloMessage;
 import com.example.hello.model.Info;
 import com.example.hello.repository.InfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +16,7 @@ import java.util.List;
 
 
 @RestController
+@RefreshScope
 public class HelloController {
 
     @Autowired
@@ -25,6 +28,14 @@ public class HelloController {
     @GetMapping("/")
     public String home(){
         return "hello";
+    }
+
+    @Value("${profile}")
+    private String profile;
+
+    @GetMapping("/profile")
+    public String  profile(){
+        return this.profile;
     }
 
     @GetMapping("/message")
