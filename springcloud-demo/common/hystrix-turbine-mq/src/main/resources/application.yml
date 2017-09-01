@@ -1,5 +1,5 @@
 server:
-  port: 8089
+  port: 8099
 
 eureka:
   client:
@@ -13,7 +13,7 @@ spring:
     name: hystrix-turbine-mq
   rabbitmq:
     host: localhost
-    port: 5673
+    port: 5672
     username: guest
     password: guest
 
@@ -22,3 +22,18 @@ info:
 #turbine:
   #app-config: helloworld,helloworldfeign,hello,world
   #cluster-name-expression: "'default'"
+
+---
+spring:
+  profiles: docker
+  rabbitmq:
+    port: 5672
+    username: guest
+    password: guest
+    host: rabbitmq
+server:
+  port: ${{SERVER_PORT}:8089}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST}

@@ -11,3 +11,15 @@ spring:
     base-url: http://127.0.0.1:9411
 server:
   port: 8010
+
+---
+spring:
+  profiles: docker
+  zipkin:
+    base-url: http://track:9411
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST}
+server:
+  port: ${{SERVER_PORT}:8010}

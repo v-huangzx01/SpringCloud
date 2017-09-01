@@ -43,3 +43,15 @@ endpoints:
     enabled: true
     sensitive: false
   sensitive: false
+
+---
+spring:
+  profiles: docker
+  zipkin:
+    base-url: http://track:9411
+server:
+  port: ${{SERVER_PORT}:8086}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST}

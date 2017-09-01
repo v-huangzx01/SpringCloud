@@ -3,11 +3,12 @@ spring:
     name: hello
   cloud:
     config:
-      uri: http://user:123456@localhost:8090/
+      uri: http://user:123456@configserver1:8090/
       profile: dev
       label: master
   rabbitmq:
-    host: localhost
-    port: 5673
+    host: rabbitmq
+    port: 5672
     username: guest
     password: guest
+

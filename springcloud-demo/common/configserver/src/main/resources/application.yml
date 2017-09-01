@@ -32,3 +32,14 @@ endpoints:
   bus:
     enabled: true
     sensitive: false
+---
+spring:
+  profiles: docker
+server:
+  port: ${{SERVER_PORT}:8090}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST}
+
+

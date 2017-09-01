@@ -15,7 +15,7 @@ spring:
       percentage: 1.0
   rabbitmq:
     host: localhost
-    port: 5673
+    port: 5672
     username: guest
     password: guest
 logging:
@@ -23,4 +23,22 @@ logging:
     root: INFO
     org.springframework.web.servlet.DispatcherServlet: DEBUG
     org.springframework.cloud.sleuth: DEBUG
+
+---
+spring:
+  profiles: docker
+  zipkin:
+    base-url: http://track:9411
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST}
+server:
+  port: ${{SERVER_PORT}:8020}
+
 
