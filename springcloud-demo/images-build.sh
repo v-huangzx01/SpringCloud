@@ -11,7 +11,7 @@ function progress(){
 set -e
 
 # 镜像仓库前缀
-REGPREFIX=127.0.0.1:5000/billjiang
+REGPREFIX=120.79.73.92:5000/billjiang
 TOTAL=10
 
 #discovery server
