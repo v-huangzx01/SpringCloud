@@ -62,7 +62,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8086
     networks:
-       - webnet
+      - webnet
 
 
   # 启动seluth+zipkin zipkin服务跟踪/依赖可视化
