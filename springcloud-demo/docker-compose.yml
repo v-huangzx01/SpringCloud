@@ -10,7 +10,7 @@ services:
     networks:
       - webnet
     environment:
-      - ADDITIONAL_EUREKA_SERVER_LIST=http://springCloudDemo_discovery2:8762/eureka/
+      - ADDITIONAL_EUREKA_SERVER_LIST=http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8761
 
@@ -20,7 +20,7 @@ services:
     ports:
       - "8762:8762"
     environment:
-      - ADDITIONAL_EUREKA_SERVER_LIST=http://springCloudDemo_discovery1:8761/eureka/
+      - ADDITIONAL_EUREKA_SERVER_LIST=http://discovery1:8761/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8762
     networks:
@@ -33,7 +33,7 @@ services:
     ports:
       - "8090:8090"
     environment:
-      - EUREKA_SERVER_LIST=http://springCloudDemo_discovery1:8761/eureka/,http://springCloudDemo_discovery2:8762/eureka/
+      - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8090
     networks:
@@ -45,7 +45,7 @@ services:
     ports:
       - "8091:8091"
     environment:
-      - EUREKA_SERVER_LIST=http://springCloudDemo_discovery1:8761/eureka/,http://springCloudDemo_discovery2:8762/eureka/
+      - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8091
     networks:
@@ -58,7 +58,7 @@ services:
     ports:
       - "8086:8086"
     environment:
-      - EUREKA_SERVER_LIST=http://springCloudDemo_discovery1:8761/eureka/,http://springCloudDemo_discovery2:8762/eureka/
+      - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8086
     networks:
@@ -72,7 +72,7 @@ services:
     ports:
       - "9411:9411"
     environment:
-      - EUREKA_SERVER_LIST=http://springCloudDemo_discovery1:8761/eureka/,http://springCloudDemo_discovery2:8762/eureka/
+      - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=9411
     networks:
@@ -87,7 +87,7 @@ services:
     ports:
       - "8087:8087"
     environment:
-      - EUREKA_SERVER_LIST=http://springCloudDemo_discovery1:8761/eureka/,http://springCloudDemo_discovery2:8762/eureka/
+      - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8087
     networks:
@@ -100,7 +100,7 @@ services:
     ports:
       - "8089:8089"
     environment:
-      - EUREKA_SERVER_LIST=http://springCloudDemo_discovery1:8761/eureka/,http://springCloudDemo_discovery2:8762/eureka/
+      - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8089
     networks:
@@ -117,6 +117,7 @@ services:
     networks:
       - webnet
 networks:
-    webnet:
+  webnet:
+    driver: overlay
 
 
