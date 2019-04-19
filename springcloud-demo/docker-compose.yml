@@ -3,7 +3,6 @@ services:
 
   #启动注册中心eureka-server集群 集中管理/服务注册/服务发现
   discovery1:
-    container_name: discovery1
     image: 120.79.73.92:5000/billjiang/discovery
     ports:
       - "8761:8761"
@@ -15,7 +14,6 @@ services:
       - SERVER_PORT=8761
 
   discovery2:
-    container_name: discovery2
     image: 120.79.73.92:5000/billjiang/discovery
     ports:
       - "8762:8762"
@@ -28,7 +26,6 @@ services:
 
   #启动配置中心config-server集群 配置更新/配置集中管理/多环境配置
   config1:
-    container_name: configserver1
     image: 120.79.73.92:5000/billjiang/configserver
     ports:
       - "8090:8090"
@@ -40,7 +37,6 @@ services:
       - webnet
 
   config2:
-    container_name: configserver2
     image: 120.79.73.92:5000/billjiang/configserver
     ports:
       - "8091:8091"
@@ -53,7 +49,6 @@ services:
 
   #启动网关gateway,可配置成集群,使用nginx进行负载 智能路由/安全控制/负载均衡
   gateway:
-    container_name: gateway
     image: 120.79.73.92:5000/billjiang/gateway
     ports:
       - "8086:8086"
@@ -67,7 +62,6 @@ services:
 
   # 启动seluth+zipkin zipkin服务跟踪/依赖可视化
   track:
-    container_name: track
     image: 120.79.73.92:5000/billjiang/track
     ports:
       - "9411:9411"
@@ -82,7 +76,6 @@ services:
    # hystrix
   # 启动hystrix-dashboard
   hystrix-dashboard:
-    container_name: hystrix-dashboard
     image: 120.79.73.92:5000/billjiang/hystrix-dashboard
     ports:
       - "8087:8087"
@@ -95,7 +88,6 @@ services:
 
   # 启动hystrix-turbine-mq  基于消息中间件的实时性能数据收集
   hystrix-turbine-mq:
-    container_name: hystrix-turbine-mq
     image: 120.79.73.92:5000/billjiang/hystrix-turbine-mq
     ports:
       - "8089:8089"
@@ -107,7 +99,6 @@ services:
       - webnet
 
   mysql:
-    container_name: mysql
     image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=passw0rd
