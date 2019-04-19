@@ -116,7 +116,7 @@ services:
       - MYSQL_PASSWORD=passw0rd
     networks:
       - webnet
-  networks:
+networks:
     webnet:
 
 
