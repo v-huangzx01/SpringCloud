@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
 
   #启动注册中心eureka-server集群 集中管理/服务注册/服务发现
@@ -7,6 +7,8 @@ services:
     image: 120.79.73.92:5000/billjiang/discovery
     ports:
       - "8761:8761"
+    networks:
+      - webnet
     environment:
       - ADDITIONAL_EUREKA_SERVER_LIST=http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
@@ -21,8 +23,8 @@ services:
       - ADDITIONAL_EUREKA_SERVER_LIST=http://discovery1:8761/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8762
-    links:
-      - discovery1
+    networks:
+      - webnet
 
   #启动配置中心config-server集群 配置更新/配置集中管理/多环境配置
   config1:
@@ -34,9 +36,8 @@ services:
       - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8090
-    links:
-      - discovery1
-      - discovery2
+    networks:
+      - webnet
 
   config2:
     container_name: configserver2
@@ -47,9 +48,8 @@ services:
       - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8091
-    links:
-      - discovery1
-      - discovery2
+    networks:
+      - webnet
 
   #启动网关gateway,可配置成集群,使用nginx进行负载 智能路由/安全控制/负载均衡
   gateway:
@@ -61,9 +61,8 @@ services:
       - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8086
-    links:
-      - discovery1
-      - discovery2
+    networks:
+       - webnet
 
 
   # 启动seluth+zipkin zipkin服务跟踪/依赖可视化
@@ -76,9 +75,8 @@ services:
       - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=9411
-    links:
-      - discovery1
-      - discovery2
+    networks:
+      - webnet
 
 
    # hystrix
@@ -92,9 +90,8 @@ services:
       - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8087
-    links:
-      - discovery1
-      - discovery2
+    networks:
+      - webnet
 
   # 启动hystrix-turbine-mq  基于消息中间件的实时性能数据收集
   hystrix-turbine-mq:
@@ -106,9 +103,8 @@ services:
       - EUREKA_SERVER_LIST=http://discovery1:8761/eureka/,http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8089
-    links:
-      - discovery1
-      - discovery2
+    networks:
+      - webnet
 
   mysql:
     container_name: mysql
@@ -118,4 +114,9 @@ services:
       - MYSQL_DATABASE=foodb
       - MYSQL_USER=user1
       - MYSQL_PASSWORD=passw0rd
+    networks:
+      - webnet
+  networks:
+    webnet:
+
 
