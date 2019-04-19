@@ -7,7 +7,9 @@ services:
     ports:
       - "8761:8761"
     networks:
-      - webnet
+      webnet:
+        aliases:
+          - discovery1
     environment:
       - ADDITIONAL_EUREKA_SERVER_LIST=http://discovery2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
@@ -22,7 +24,9 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8762
     networks:
-      - webnet
+      webnet:
+         aliases:
+           - discovery2
 
   #启动配置中心config-server集群 配置更新/配置集中管理/多环境配置
   config1:
@@ -34,7 +38,9 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8090
     networks:
-      - webnet
+      webnet:
+        aliases:
+          - config1
 
   config2:
     image: 120.79.73.92:5000/billjiang/configserver
@@ -45,7 +51,9 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8091
     networks:
-      - webnet
+          webnet:
+            aliases:
+              - config2
 
   #启动网关gateway,可配置成集群,使用nginx进行负载 智能路由/安全控制/负载均衡
   gateway:
@@ -57,7 +65,9 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8086
     networks:
-      - webnet
+          webnet:
+            aliases:
+              - gateway
 
 
   # 启动seluth+zipkin zipkin服务跟踪/依赖可视化
@@ -70,7 +80,9 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=9411
     networks:
-      - webnet
+      webnet:
+        aliases:
+          - track
 
 
    # hystrix
@@ -84,7 +96,9 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8087
     networks:
-      - webnet
+      webnet:
+        aliases:
+          - hystrix-dashboard
 
   # 启动hystrix-turbine-mq  基于消息中间件的实时性能数据收集
   hystrix-turbine-mq:
@@ -96,7 +110,9 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8089
     networks:
-      - webnet
+      webnet:
+        aliases:
+          - hystrix-turbine-mq
 
   mysql:
     image: mysql:5.7
@@ -106,7 +122,9 @@ services:
       - MYSQL_USER=user1
       - MYSQL_PASSWORD=passw0rd
     networks:
-      - webnet
+      webnet:
+        aliases:
+          - mysql
 networks:
   webnet:
     driver: overlay
